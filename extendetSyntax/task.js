@@ -20,7 +20,7 @@ function getResult(a,b,c){
   if (d < 0) {
       x[0] = "корней нет";
   }
-  else if (d = 0) {
+  else if (d == 0) {
       calculateX = (-b) / (2 * a);
       x[0] = calculateX;
   } 
@@ -40,7 +40,7 @@ function calculateAverageRating(){
 
 function getAverageMark(marks){
     if (marks.length > 5) {
-        marks.splice(5, marks.length - 5)
+        marks.splice(5);
         console.log("Введено более 5 оценок");
     }
 
