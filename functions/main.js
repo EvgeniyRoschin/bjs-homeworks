@@ -61,15 +61,15 @@ function getAverageScore( data ) {
     }
 
     let resultAverageScore = new Object();
-    let totalAverageScore;
+    let totalAverageScore = 0;
 
     for (let prop in data) {
-        let value = calculatingItemAverage(data[ prop ]);  //ошибка видимо здесь, по моему замыслу здесь в функцию должен приходить массив, функция работает корректно из массива считает среднее
+        let value = calculatingItemAverage(data[ prop ]);  
         resultAverageScore[ prop ] = value;
         totalAverageScore = totalAverageScore + value;
     }
 
-    totalAverageScore = totalAverageScore / data.length;
+    totalAverageScore = totalAverageScore / Object.keys(data).length;
     resultAverageScore.average = totalAverageScore;
 
     return resultAverageScore;
