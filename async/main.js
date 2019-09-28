@@ -1,25 +1,40 @@
 function setDailyRhythm(wakeUpTime, bedTime) {
-    let sustemFullTime = new Date();
-    let sustemTime = sustemFullTime.getHours() + ':' + sustemFullTime.getMinutes();
-    
-    function setAlarm(time, callback) {
-        return function alarm(sustemTime) {
-            if (sustemTime === time) {
-                callback();
-            }
-        }
-    }
+    let wakeUp = setAlarm(wakeUpTime, wakeUpMessage);
+    let goSleep = setAlarm(bedTime, goSleepMessage);
 
-    function wakeUp() {
-        console.log('Доброе утро, Вася!');
-    }
-
-    function goSleep() {
-        console.log('Спокойной ночи, Вася!');
-    }
-
-    setAlarm(wakeUpTime, wakeUp);
-    setAlarm(bedTime, goSleep);
+    setInterval(wakeUp, 1000);
+    setInterval(goSleep, 1000);
 }
 
-// setInterval( setDailyRhythm, 1000, '16:20',  '16:21');
+function setAlarm(time, callback) {
+    return function (sustemTime) {
+        if (sustemTime === time) {
+            callback();
+        }
+    }
+}
+
+const wakeUpMessage = () => console.log('Доброе утро, Вася!');
+const goSleepMessage = () => console.log('Спокойной ночи, Вася!');
+
+let sustemFullTime = new Date();
+
+let sustemFullTimeHours = function() {
+    if (sustemFullTime.getHours() < 10) {
+        return ('0' + sustemFullTime.getHours())
+    }
+    else {
+        return  sustemFullTime.getHours()
+    }
+}
+
+let sustemFullTimeMinutes = function() {
+    if (sustemFullTime.getMinutes() < 10) {
+        return ('0' + sustemFullTime.getMinutes())
+    }
+    else {
+        return  sustemFullTime.getMinutes()
+    }
+}
+
+let sustemTime = sustemFullTimeHours() + ':' + sustemFullTimeMinutes();
