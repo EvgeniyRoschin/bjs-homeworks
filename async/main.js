@@ -2,45 +2,42 @@ function setDailyRhythm(wakeUpTime, bedTime) {
     const wakeUpMessage = () => console.log('Доброе утро, Вася!');
     const goSleepMessage = () => console.log('Спокойной ночи, Вася!');  
 
-    // let wakeUp = setAlarm(wakeUpTime, wakeUpMessage);
-    // let goSleep = setAlarm(bedTime, goSleepMessage);
+    let wakeUp = setAlarm(wakeUpTime, wakeUpMessage);
+    let goSleep = setAlarm(bedTime, goSleepMessage);
 
-    // const checkWakeUpTime = () => wakeUp();
-    // const checkGoSleepTime = () => goSleep();
+    const checkWakeUpTime = () => wakeUp(new Date());
+    const checkGoSleepTime = () => goSleep(new Date());
 
-    const checkWakeUpTime = () => setAlarm(wakeUpTime, wakeUpMessage);
-    const checkGoSleepTime = () => setAlarm(bedTime, goSleepMessage);
-
-    setInterval(checkWakeUpTime(sustemTime), 1000);
-    setInterval(checkGoSleepTime(sustemTime), 1000);
+    setInterval(checkWakeUpTime(systemTime), 1000);
+    setInterval(checkGoSleepTime(systemTime), 1000);
 }
 
 function setAlarm(time, callback) {
-    return function (sustemTime) {
-        if (sustemTime === time) {
+    return function (systemTime) {
+        if (systemTime === time) {
             callback();
         }
     }
 }
 
-let sustemFullTime = new Date();
+let systemFullTime = new Date();
 
-let sustemFullTimeHours = function() {
-    if (sustemFullTime.getHours() < 10) {
-        return ('0' + sustemFullTime.getHours())
+let systemFullTimeHours = function() {
+    if (systemFullTime.getHours() < 10) {
+        return ('0' + systemFullTime.getHours())
     }
     else {
-        return  sustemFullTime.getHours()
+        return  systemFullTime.getHours()
     }
 }
 
-let sustemFullTimeMinutes = function() {
-    if (sustemFullTime.getMinutes() < 10) {
-        return ('0' + sustemFullTime.getMinutes())
+let systemFullTimeMinutes = function() {
+    if (systemFullTime.getMinutes() < 10) {
+        return ('0' + systemFullTime.getMinutes())
     }
     else {
-        return  sustemFullTime.getMinutes()
+        return  systemFullTime.getMinutes()
     }
 }
 
-let sustemTime = sustemFullTimeHours() + ':' + sustemFullTimeMinutes();
+let systemTime = systemFullTimeHours() + ':' + systemFullTimeMinutes();
