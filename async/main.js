@@ -8,36 +8,18 @@ function setDailyRhythm(wakeUpTime, bedTime) {
     const checkWakeUpTime = () => wakeUp(new Date());
     const checkGoSleepTime = () => goSleep(new Date());
 
-    setInterval(checkWakeUpTime(systemTime), 1000);
-    setInterval(checkGoSleepTime(systemTime), 1000);
+    setInterval(checkWakeUpTime, 1000);
+    setInterval(checkGoSleepTime, 1000);
 }
 
 function setAlarm(time, callback) {
     return function (systemTime) {
-        if (systemTime === time) {
+        systemTime = systemTime.toString();
+
+        let shortTime = () => {return systemTime.slice(16, 21)};
+        
+        if (shortTime() === time) {
             callback();
         }
     }
 }
-
-let systemFullTime = new Date();
-
-let systemFullTimeHours = function() {
-    if (systemFullTime.getHours() < 10) {
-        return ('0' + systemFullTime.getHours())
-    }
-    else {
-        return  systemFullTime.getHours()
-    }
-}
-
-let systemFullTimeMinutes = function() {
-    if (systemFullTime.getMinutes() < 10) {
-        return ('0' + systemFullTime.getMinutes())
-    }
-    else {
-        return  systemFullTime.getMinutes()
-    }
-}
-
-let systemTime = systemFullTimeHours() + ':' + systemFullTimeMinutes();
