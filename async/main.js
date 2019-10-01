@@ -10,6 +10,8 @@ function setDailyRhythm(wakeUpTime, bedTime) {
 
     setInterval(checkWakeUpTime, 1000);
     setInterval(checkGoSleepTime, 1000);
+
+    // setInterval(() => wakeUp(new Date()), 1000); короткий вариант
 }
 
 function setAlarm(time, callback) {
@@ -17,6 +19,7 @@ function setAlarm(time, callback) {
         systemTime = systemTime.toString();
 
         let shortTime = () => {return systemTime.slice(16, 21)};
+        // let shortTime = systemTime.toString().slice(16, 21)}; короткий вариант
         
         if (shortTime() === time) {
             callback();
